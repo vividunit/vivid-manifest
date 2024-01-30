@@ -86,7 +86,7 @@ $: mkdir debian
 $: cd debian
 $: wget -c https://www.vividunit.com/download/rootfs/rootfs-vivid-latest.img.xz
 $: xz -d rootfs-vivid-latest.img.xz
-$: ln -sf rootfs-vivid-latest.img.xz linaro-rootfs.img
+$: ln -sf rootfs-vivid-latest.img linaro-rootfs.img
 ```
 
 Build an image:
