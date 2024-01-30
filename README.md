@@ -98,6 +98,6 @@ $: ./build.sh BoardConfig-rk3399-vivid-unit-v13.mk
 $: ./build.sh all
 ```
 
-After done, you can get `prebuilt-rk3399-vivid-unit-v13-yyymmdd.img` from vivid-bsp-release/rockdev/ directory.
+After done, you can get `rk3399-vivid-unit-v13-debian11-yyymmdd.img` from vivid-bsp-release/rockdev/ directory.
 
 

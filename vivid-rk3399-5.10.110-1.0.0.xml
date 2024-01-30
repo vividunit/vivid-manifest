@@ -2,10 +2,11 @@
 <manifest>
 
   <remote name="leavs" fetch="https://github.com/leavs"/>
+  <remote name="vividunit" fetch="https://github.com/vividunit"/>
   <default remote="leavs" sync-j="4"/>
 
-  <project name="kernel"     path="kernel"     revision="958d44188100f47841eed119bd7d732830da8d2a"/>
-  <project name="u-boot"     path="u-boot"     revision="69c83a551faf5fe97e92497eedc042272c2c37c4"/>
+  <project name="kernel" path="kernel" remote="vividunit" revision="958d44188100f47841eed119bd7d732830da8d2a"/>
+  <project name="u-boot" path="u-boot" remote="vividunit" revision="69c83a551faf5fe97e92497eedc042272c2c37c4"/>
   <project name="rkbin"      path="rkbin"      revision="00120e700aea757efbe7d827b3f038fba86ecc47"/>
   <project name="armgcc"  path="prebuilts"  revision="9de9b6a16d325787acf2cd94ccd751e57df852aa"/>
   <project name="rk-build"  path="build"  revision="6b5ec82ffc44c5f0ab45ab4ed0a1e9635aff85ad"/>
@@ -42,7 +43,7 @@
   <project name="security" path="external/security" revision="732fd0feeb76fab3b2c39cca479fb316b194cfed"/>
   <project name="xserver" path="external/xserver" revision="c65143d76838990f3dfff1d39b0d62d4ca06f569"/>
   
-  <project name="rockchip_device"  path="device/rockchip"  revision="e967101f7d81096a26dadc11e3e41b8468792093">
+  <project name="rockchip_device"  path="device/rockchip"  revision="e4937cea0ac2b783079145c1d1cd15ade084f436">
     <linkfile src="common/mkfirmware.sh" dest="mkfirmware.sh"/>
     <linkfile src="common/build.sh" dest="build.sh"/>
     <linkfile src="common/rkflash.sh" dest="rkflash.sh"/>
