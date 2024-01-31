@@ -58,7 +58,7 @@ Download the Debian Project SDK
 ```
 $: mkdir vivid-bsp-release
 $: cd vivid-bsp-release
-$: repo init -u https://github.com/leavs/vivid-manifest -b <branch name> [ -m <release manifest>]
+$: repo init -u https://github.com/vividunit/vivid-manifest -b <branch name> [ -m <release manifest>]
 $: repo sync
 ```
 
@@ -71,7 +71,7 @@ To download the 5.10.110-1.0.0 release
 
 ```
 $: cd vivid-bsp-release
-$: repo init -u https://github.com/leavs/vivid-manifest -b vivid-linux-bullseye -m vivid-rk3399-5.10.110-1.0.0.xml
+$: repo init -u https://github.com/vividunit/vivid-manifest -b vivid-linux-bullseye -m vivid-rk3399-5.10.110-1.0.0.xml
 $: repo sync
 ```
 
