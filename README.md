@@ -101,3 +101,83 @@ $: ./build.sh all
 After done, you can get `rk3399-vivid-unit-v13-debian11-yyymmdd.img` from vivid-bsp-release/rockdev/ directory.
 
 
+Recompile custom kernel:
+------------------------
+
+For example, we will add the following kernel config
+
+```
+CONFIG_OVERLAY_FS=y
+CONFIG_OVERLAY_FS_INDEX=y
+CONFIG_OVERLAY_FS_XINO_AUTO=y
+```
+
+Lets to do it
+
+```
+$: cd vivid-bsp-release/kernel
+$: make ARCH=arm64 menuconfig
+```
+
+Then enable the following kernel configuration
+
+```
+File system->
+  <*> Overlay filesystem support
+  [*] Overlayfs: follow redirects even if redirects are turned off
+  [*] Overlayfs: turn on inodes index feature by default
+  [*] Overlayfs: auto enable inode number mapping
+```
+
+Then save config
+
+```
+$: make ARCH=arm64 savedefconfig
+$: cp defconfig arch/arm64/configs/vivid_unit_defconfig
+```
+
+Recompile the kernel
+
+```
+$: cd ../
+$: ./build.sh kernel && ./build.sh firmware
+```
+
+Now we get the new boot.img from the rockdev directory, and the WiFi/Bt driver module, \
+as the kernel configration is changed, we also need to update bcmdhd.ko and dhd_static_buf.ko \
+in the rootfs. Use the following command to upload the file to target system.
+
+```
+$: scp rockdev/boot.img vivid@xxx.xxx.xxx.xxx:
+$: scp kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/bcmdhd.ko vivid@xxx.xxx.xxx.xxx:/system/lib/modules/
+$: scp kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_static_buf.ko vivid@xxx.xxx.xxx.xxx:/system/lib/modules/
+```
+
+use ssh to login the target vivid board and use dd command to update the boot.img
+
+```
+$: ssh vivid@xxx.xxx.xxx.xxx
+$: sudo dd if=boot.img of=/dev/mmcblk0p4 conv=fsync
+$: sudo reboot
+```
+
+Now we are run in new compiled kernel, run the following commands to check the kernel build time
+
+```
+$: uname -ra
+```
+
+If you want to generate one new system image, do it like the following commands(option)
+
+```
+$: cd vivid-bsp-release/
+// update bcmdhd.ko and dhd_static_buf.ko in rootfs
+$: sudo mount vivid-bsp-release/ /mnt/
+$: sudo cp kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/bcmdhd.ko /mnt/system/lib/modules/
+$: sudo cp kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_static_buf.ko /mnt/system/lib/modules/
+$: sync
+$: sudo umount /mnt/
+$: ./build.sh updateimg
+```
+
+Now we will get new updated system image `rk3399-vivid-unit-v13-debian11-yyymmdd.img` from vivid-bsp-release/rockdev/ directory.
