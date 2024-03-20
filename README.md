@@ -172,12 +172,22 @@ If you want to generate one new system image, do it like the following commands(
 ```
 $: cd vivid-bsp-release/
 // update bcmdhd.ko and dhd_static_buf.ko in rootfs
-$: sudo mount vivid-bsp-release/ /mnt/
+$: sudo mount debian/linaro-rootfs.img /mnt/
 $: sudo cp kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/bcmdhd.ko /mnt/system/lib/modules/
 $: sudo cp kernel/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/dhd_static_buf.ko /mnt/system/lib/modules/
 $: sync
 $: sudo umount /mnt/
 $: ./build.sh updateimg
+```
+
+On the latest SDK, we had updated the `build.sh` script to update wifi/bt module in rootfs after build kernel, so just use the following commands will be ok.
+
+```
+$: cd vivid-bsp-release
+$: cd kernel
+$: <hack kernel>
+$: cd ..
+$: ./build.sh kernel && ./build.sh firmware && ./build.sh updateimg
 ```
 
 Now we will get new updated system image `rk3399-vivid-unit-v13-debian11-yyymmdd.img` from vivid-bsp-release/rockdev/ directory.
