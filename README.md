@@ -22,7 +22,7 @@ g++ patchelf chrpath gawk texinfo chrpath diffstat binfmt-support \
 qemu-user-static live-build bison flex fakeroot cmake gcc-multilib \
 g++-multilib unzip device-tree-compiler ncurses-dev libgucharmap-2-90-dev \
 bzip2 expat gpgv2 cpp-aarch64-linux-gnu time mtd-utils python3-pip zstd curl \
-python-is-python3
+python-is-python3 pv wget
 $: sudo pip3 install asciidoc
 ```
 
